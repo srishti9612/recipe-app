@@ -1,0 +1,94 @@
+.loader {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+#feed {
+  display: flex;
+  flex-direction: column;
+  width: 300vh;
+}
+
+#feed1 {
+  height: 15vh;
+  display: flex;
+  flex-direction: row;
+  border-bottom-style: solid;
+  border-width: 3px;
+  border-color: #424242;
+  align-items: flex-end;
+}
+
+#All {
+  font-weight: bold;
+}
+
+#All, #Followee {
+  margin-left: 2vh;
+  margin-right: 2vh;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+
+#feed2 {
+ height: 85vh;
+ overflow-y: auto;
+}
+
+.listitem {
+  width: 135vh;
+  height: 15vh;
+  margin-left: 4vh;
+  margin-top: 2vh;
+  cursor: pointer;
+  color: #424242;
+  background-color: #faf3e8  /*#f5e8d3*/;
+  border-radius: 8px 8px 8px 8px;
+  font-size: 26px;
+  padding: 10px;
+  animation-name: animateIn;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes animateIn {
+  0% {
+    opacity: 0;
+    /*transform: scale(0.6) translateY(-8px);*/
+  }
+
+  25% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  75% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+#recipetext {
+   color: #424242;
+  /*color: white;*/
+}
+
+#prolink, #create {
+  font-size: 20px;
+  /*color: #d4705d;*/
+  /*color: #666600;*/
+  color: #787878;
+}
+
+

@@ -1,0 +1,92 @@
+.followlist {
+  background-image: linear-gradient(180deg, #faf3e8, #fdfbf8);
+  margin-left: 4vh;
+  width: 40vh;
+  height: 6vh;
+  margin-top: 2vh;
+  border-radius: 8px 8px 8px 8px;
+  display: flex;
+  flex-direction: col;
+  align-items: center;
+}
+
+#proflink {
+  margin-left: 2vh;
+  font-size: 20px;
+  color: #787878;
+}
+
+
+#editlink {
+  font-size: 18px;
+  /*color: #d4705d;*/
+  color: #787878;
+  text-decoration: underline;
+}
+
+.introeditlink {
+  color: #787878;
+  margin-left: 1vh;
+  text-decoration: underline;
+}
+
+.followingAuthors {
+  font-size: 18px;
+  margin-bottom: 0.5vh;
+  margin-left: 2vh;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.myprofilenav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.intro {
+ /*background-color: lightgrey;*/
+  height: 30%;
+}
+
+.introEdit {
+  /*background-color: orange;*/
+  height: 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.introform {
+  height: 100%;
+  width: 100%;
+  align-self: flex-end;
+  /*background-color: blue;*/
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.formcontents {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.introTextarea {
+  height: 100%;
+  width: 100%;
+  resize: none;
+}
+
+.introsave {
+  width: 6vh;
+  height: 4vh;
+  align-self: flex-end;
+  border: none;
+  outline: none;
+  background-color: #424242;
+  color: white;
+}
+

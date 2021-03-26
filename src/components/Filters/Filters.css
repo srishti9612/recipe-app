@@ -1,0 +1,91 @@
+
+.filterform {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.delbutton {
+  height: 2vh;
+  width: 2vh;
+  background: url('./cancel.svg') no-repeat;
+  background-size: cover;
+  border: none;
+  outline: none;
+  margin-left: 2vh;
+  margin-top: 2vh;
+}
+
+
+.plusbutton {
+  height: 2vh;
+  width: 2vh;
+  background-color: transparent;
+  background: url('./plus.svg') no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  border: none;
+  outline: none;
+  margin-top: 2vh;
+}
+
+.checkboxlabel {
+  margin-left: 2vh;
+}
+
+#meallabel, #inglabel, #cuislabel, #xmeallabel, #xinglabel, #xcuislabel {
+  width: 34vh;
+  font-size: 16px;
+  background-image: linear-gradient(180deg, #faf3e8, #fdfbf8);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#clearfilter, #submitfilter {
+   height: 5vh;
+   width: 12vh;
+   font-size: 16px;
+   /*text-transform: uppercase;*/
+   margin-top: 4vh;
+   margin-right: 4vh;
+   margin-bottom: 2vh;
+   outline: none;
+   border: none;
+   background-color: #424242;
+   box-shadow: 2px 2px 6px 2px #e6e6e6;
+   color: white;
+}
+
+.filterbuttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.filterinputs {
+  animation-name: animateIn;
+  animation-duration: 500ms;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes animateIn {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  75% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

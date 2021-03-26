@@ -1,0 +1,52 @@
+.nav {
+  /*background-color: #424242;*/
+  background-image: linear-gradient(120deg, #292929, #5c5c5c);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 12vh;
+}
+
+.logout {
+  width:70%;
+  margin-left: 1vh;
+  margin-right: 1vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  cursor: pointer; 
+}
+
+.profile {
+  width: 70%;
+  margin-top: 2vh;
+  margin-left: 1vh;
+  margin-right: 1vh;
+  margin-bottom: 2vh;
+  cursor: pointer;
+}
+
+.add {
+  width: 70%;
+  margin-top: 2vh;
+  margin-left: 1vh;
+  margin-right: 1vh;
+  margin-bottom: 2vh;
+  cursor: pointer;
+}
+
+.draft {
+  width: 70%;
+  margin-top: 2vh;
+  margin-left: 1vh;
+  margin-right: 1vh;
+  margin-bottom: 4vh;
+  cursor: pointer;
+}
+
+.bookmark {
+  width: 70%;
+  margin-left: 1vh;
+  margin-right: 1vh;
+  cursor: pointer;
+}
+

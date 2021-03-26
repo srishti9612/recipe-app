@@ -1,0 +1,103 @@
+.required {
+  color: red; 
+  align-self: flex-end;
+  padding-top: 2vh;
+}
+
+.labeldiv {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.Side {
+  display: flex;
+  flex-direction: column;
+  /*background-color: #424242;*/
+  background-image: linear-gradient(120deg, #252525, #5c5c5c);
+  width: 120vh;
+  height: 100vh;
+}
+
+.foodlogo {
+  width: 100%;
+  height: 40%;
+  align-self: flex-end;
+}
+
+.middle {
+  width: 100%;
+  flex-grow: 1;
+}
+
+.backlogo {
+  align-self: flex-start;
+  height: 4%;
+  width: 8%;
+  margin-top: 2vh;
+  margin-left: 2vh;
+  cursor: pointer;
+}
+
+.content {
+  width: 300vh;
+  height: 100vh; 
+  overflow-y: auto;
+}
+
+.bar {
+  /*background-color: #424242;*/
+  background-image: linear-gradient(120deg, #252525, #5c5c5c);
+  width: 12vh;
+}
+
+.bookmarklogo {
+  width: 70%;
+  margin-top: 1vh;
+  margin-left: 1vh;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+
+
+.fadeInAnimation {
+  animation-name: animateIn;
+  animation-duration: 500ms;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes animateIn {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  75% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+

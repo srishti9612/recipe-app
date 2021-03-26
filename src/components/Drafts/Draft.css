@@ -1,0 +1,24 @@
+.dsection1 {
+   height: 15vh;
+   border-bottom-style: solid;
+   border-width: 3px;
+   border-color: #424242;
+   display: flex;
+   flex-direction: row;
+   align-items: flex-end;
+   font-size: 18px;
+}
+
+.dsection2 {
+   overflow-y: auto;
+   height: 85vh;
+}
+
+#alldrafts {
+  margin-left: 2vh;
+  font-weight: bold;
+}
+
+#drafttext {
+  margin-top: 3vh;
+}

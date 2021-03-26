@@ -1,0 +1,137 @@
+/*.required {
+  color: red;
+  align-self: flex-end;
+  padding-top: 2vh;
+}
+
+.labeldiv {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}*/
+
+input {
+  margin-top: 2vh;
+  border-color: #faf3e8;
+}
+
+form {
+  margin-top: 4vh;
+  margin-left: 4vh;
+}
+
+label {
+  margin-top: 2vh;
+  margin-right: 1vh;
+}
+
+#meals {
+  margin-top: 4vh;
+  margin-right: 2vh;
+  margin-bottom: 2vh;
+}
+
+#courses {
+  margin-top: 4vh;
+  margin-right: 2vh;
+  margin-bottom: 2vh;
+}
+
+#title, #cuisine, #new, #method, #picture, #imgpreview {
+  display: block;
+  margin-bottom: 2vh;
+}
+
+#new {
+  border: none;
+  outline: none;
+}
+
+#method {
+  border-color: #424242;
+}
+ 
+#changephoto {
+  border: none;
+  outline: none;
+  background-color: #424242;
+  color: white;
+  box-shadow: 2px 2px 6px 2px #e6e6e6;
+  width: 15vh;
+  height: 4vh;
+}
+
+.removebutton {
+  height: 2vh;
+  width: 2vh;
+  background: url('./cancel.svg') no-repeat;
+  background-size: cover;
+  border: none;
+  outline: none;
+  margin-left: 2vh;
+  margin-top: 2vh;
+}
+
+.addbutton {
+  height: 2vh;
+  width: 2vh;
+  background-color: transparent;
+  background: url('./plus.svg') no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  border: none;
+  outline: none;
+  margin-top: 2.5vh;
+}
+
+.addmore {
+  display: flex;
+  flex-direction: row;
+}
+
+#title {
+  width: 115vh;
+}
+
+#method {
+  width: 115vh;
+  height: 40vh;
+  resize: none;
+  outline: #424242;
+}
+
+.name, .quantity {
+  margin-right: 2vh;
+  margin-bottom: 2vh;
+}
+
+.publish, .savedraft, .update, .delete {
+  margin-bottom: 10vh;
+  margin-right: 2vh;
+  width: 20vh;
+  height: 5vh;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  background-color: #424242;
+  color: white;
+  box-shadow: 2px 2px 6px 2px #e6e6e6;
+}
+
+.addlabels {
+  /*text-transform: uppercase;*/
+  background-image: linear-gradient(180deg, #faf3e8, #fdfbf8);
+  font-weight: bold;
+  padding-right: 4vh;
+}
+
+.newlabel {
+  background-image: linear-gradient(180deg, #faf3e8, #fdfbf8);
+}
+
+.ingheading {
+  margin-top: 4vh;
+  margin-bottom: 2vh;
+  background-image: linear-gradient(180deg, #faf3e8, #fdfbf8);
+  width: 15vh;
+}

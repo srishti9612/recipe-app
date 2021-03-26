@@ -1,0 +1,53 @@
+#recipephoto {
+  height: 30vh;
+  width: 40vh;
+}
+
+.title {
+  font-size: 8vh;
+  font-weight: bold;
+  margin-top: 2vh;
+  margin-left: 4vh;
+  color: #424242;
+}
+
+.foodimage {
+  margin-left: 4vh;
+  margin-top: 4vh;
+  margin-bottom: 4vh;
+}
+
+.author {
+  margin-left: 4vh;
+  margin-bottom: 2vh;
+  font-size: 3vh;
+}
+
+.cuisine, .meal, .course, .methodheading, .ingredients {
+  margin-left: 4vh;
+  margin-bottom: 2vh;
+  font-size: 2.5vh;
+}
+
+.recipemethod {
+  margin-left: 4vh;
+  width: 80vh;
+  font-size: 2.5vh;
+  white-space: pre-wrap;
+}
+
+.ingredient {
+  display: flex;
+  flex-direction: row;
+}
+
+.Name {
+  margin-left: 4vh;
+  margin-bottom: 2vh;
+  font-size: 2.5vh;
+}
+
+.Quantity {
+  margin-left: 1vh;
+  font-size: 2.5vh;
+}

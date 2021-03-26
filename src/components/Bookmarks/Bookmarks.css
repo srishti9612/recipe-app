@@ -1,0 +1,24 @@
+.bsection1 {
+   height: 15vh;
+   border-bottom-style: solid;
+   border-width: 3px;
+   border-color: #424242;
+   display: flex;
+   flex-direction: row;
+   align-items: flex-end;
+   font-size: 18px;
+}
+
+.bsection2 {
+   overflow-y: auto;
+   height: 85vh;
+}
+
+#allbookmarks {
+   margin-left: 2vh;
+   font-weight: bold;
+}
+
+#bookmarktext {
+   margin-top: 3vh;
+}

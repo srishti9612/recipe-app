@@ -1,0 +1,90 @@
+.login {
+  background-color: white;
+  /*background-color: green;*/
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+} 
+
+.heading {
+  font-size: 11vh;
+  text-align: center;
+  padding-top: 8vh;
+  color: #424242;
+  height: 30%;
+  width: 100%;
+  background-color: blue;
+  background-color: white;
+  text-shadow: 2px 2px 2.5px #000000;
+}
+
+.subheading {
+  text-align: center;
+  color: #424242;
+  font-family: "Courier New", monospace;
+  font-size: 3vh;
+  margin-bottom: 4vh;
+}
+
+.lformcontainer {
+  background-color: white; 
+  /*background-color: yellow;*/
+  width: 80vh;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  box-shadow: -1px 1px 12px 1px #e6e6e6;
+}
+
+.loglabel {
+   /*color: white;*/
+   /*color: #424242;*/
+   color: #242424;
+}
+
+#username, #password {
+  width: 60vh;
+  display: block;
+  outline: 0;
+  margin-right: 4vh;
+}
+
+#login {
+  width: 18vh;
+  height: 6vh;
+  margin-top: 3vh;
+  color: white;
+  background-color: #424242;
+  border: none;
+  outline: 0;
+  margin-right: 2vh;
+  margin-left: 15vh; 
+} /* This is for login button */
+
+.ripple {
+  background-position: center;
+  transition: background 0.6s;
+}
+
+.ripple:hover {
+  background: #7d7d7d radial-gradient(circle, 
+  transparent 1%, #7d7d7d 1%) center/15000%;
+}
+
+.ripple:active {
+  background-color: #ababab;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+#slink {
+  /*color: #424242;*/
+  color: #242424;
+  margin-left: 3vh;
+}
+
+
