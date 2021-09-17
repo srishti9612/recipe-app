@@ -141,7 +141,7 @@ const Feed = ({ followingNames }) => {
 	      <Link
 		id="prolink"
 		to={{
-		pathname: (recipe.author === window.localStorage.getItem('loggedUser')) ? "/myprofile" : "/profile",
+		pathname: (recipe.author === window.localStorage.getItem('loggedUser')) ? "/myprofile" : `/profile/${recipe.author}`,
 	        state: { 
 	         username: recipe.author, 
 		 following: followingAuthors.includes(recipe.author) ? true : false,

@@ -60,7 +60,7 @@ const App = () => {
 	<Route exact path="/myprofile">
 	  {loggedIn ? <MyProfile/> : <Redirect to="/" />}
 	</Route>
-	<Route exact path="/profile">
+	<Route exact path="/profile/:username">
 	  {loggedIn ? <Profile/> : <Redirect to="/" />}
 	</Route>
       </Switch>

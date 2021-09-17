@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation, useParams } from 'react-router-dom'
 import './../Common.css'
 import './../CommonLayout.css'
 import './Profile.css'
@@ -20,20 +20,21 @@ const Profile = () => {
 
   const location = useLocation()
 
-  const username = location.state.username
+  //const username = location.state.username
+  const { username } = useParams() 
   
-  let typeVal = window.localStorage.getItem('type')
+  /*let typeVal = window.localStorage.getItem('type')
 
   const type = (typeVal !== null) ? window.localStorage.getItem('type') : location.state.type
 
   window.localStorage.setItem('type', type)
 
-  console.log(type)
+  console.log(type)*/
 	
-  if (location.state.following !== undefined) {
+  /*temp if (location.state.following !== undefined) {
     window.localStorage.setItem('following', location.state.following)
     console.log(location.state.following)
-  }
+  }*/
 
   const [ urecipes, setUrecipes ] = useState([])
 
@@ -44,7 +45,7 @@ const Profile = () => {
   console.log(username)
 
   console.log(window.localStorage.getItem('following'))
-  console.log(followButton)
+  console.log(followButton) 
 
   // add a service to retrieve all recipes and bio of the given username
 	
@@ -52,7 +53,7 @@ const Profile = () => {
 
   useEffect(() => {
 
-   if (history.location.state && (history.location.state.following !== undefined)) {
+   /*temp if (history.location.state && (history.location.state.following !== undefined)) {
      let state = { ...history.location.state }
      delete state.following
      history.replace({ ...history.location, state })
@@ -68,7 +69,7 @@ const Profile = () => {
      setFollowbutton('Following')
    } else if (follVal === false){
      setFollowbutton('Follow')
-   }
+   }*/
 
    retrieveService.getUserBio(uObject)
 	          .then(returnedObject => {
@@ -92,7 +93,7 @@ const Profile = () => {
   const handleFollow = () => {
     /// add a service here that adds the current user to the follower list of 
     /// this user and adds this user to the following list of current user
-	followService.addFollowing(username)
+	/*temp followService.addFollowing(username)
 	          .then(returnedObject => {
 		     console.log(returnedObject)
 		     if (returnedObject) {
@@ -106,10 +107,10 @@ const Profile = () => {
 			  console.log('stopped following')
 			}
 		     } 
-		  })
+		  })*/
   }
 
-  const handleBack = () => {
+  /*const handleBack = () => {
 
      let typeVal = window.localStorage.getItem('type')
      window.localStorage.removeItem('type')
@@ -122,6 +123,11 @@ const Profile = () => {
      } else if (typeVal === 'myprofile') {
        history.push('/myprofile')
      }
+  }*/
+
+  const handleBack = () => {
+     console.log("history: ") 
+     history.goBack()
   }
 
   return (
