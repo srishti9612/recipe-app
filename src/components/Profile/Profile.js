@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useHistory, useLocation, useParams } from 'react-router-dom'
 import './../Common.css'
 import './../CommonLayout.css'
@@ -10,9 +10,15 @@ import { ReactComponent as BackLogo } from './../assets/back.svg'
 import { ReactComponent as ProfileImg } from './../assets/profileimg.svg'
 import helper from './../utils/helper.js'
 import Loader from 'react-loader-spinner'
+import { FollowingAuthorsContext } from '../utils/FollowingAuthorsContext'
 
 
 const Profile = () => {
+
+
+  const { followingNames } = useContext(FollowingAuthorsContext)
+
+  console.log(followingNames)
  
   const history = useHistory()
 

@@ -4,6 +4,7 @@ import Feed from './Feed/Feed'
 import Nav from './Nav/Nav'
 import retrieveService from './../services/retrieve.js'
 import { FilterContext } from './utils/FilterContext'
+import { FollowingAuthorsContext } from './utils/FollowingAuthorsContext'
 import './Home.css'
 
 const Home = ({ setLoggedIn }) => {
@@ -29,10 +30,12 @@ const Home = ({ setLoggedIn }) => {
 
    return (
      <div className="flex-container">
+       <FollowingAuthorsContext.Provider value={{followingNames}}>
        <FilterContext.Provider value={{filter, setFilter}}>
          <Sidebar/>
          <Feed followingNames={followingNames}/>
        </FilterContext.Provider>
+       </FollowingAuthorsContext.Provider>
        <Nav setLoggedIn={setLoggedIn}/>
      </div>
    )
