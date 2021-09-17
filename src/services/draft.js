@@ -6,7 +6,9 @@ const adddraft = (newDraft) => {
  
   const config = conf.getConfig()
 
-  const request = axios.post('/api/adddraft', newDraft, config)
+  //const request = axios.post('/api/adddraft', newDraft, config) /* trying out new apis */
+
+  const request = axios.post('/api/draft/', newDraft, config)
 
   return request.then(response => response.data)
 	        .catch(err => console.log(err))
@@ -18,7 +20,9 @@ const updatedraft = (updDraft) => {
 
    const config = conf.getConfig()
 
-   const request = axios.post('/api/updatedraft/', updDraft, config)
+   //const request = axios.put('/api/updatedraft/', updDraft, config) /* trying out new apis */
+
+   const request = axios.put('/api/draft/', updDraft, config)
 
    return request.then(response => response.data)
 	        .catch(err => console.log(err))
@@ -29,7 +33,9 @@ const publishdraft = (updDraft) => {
 
   const config = conf.getConfig()
 
-  const request = axios.post('/api/publishdraft/', updDraft, config)
+  //const request = axios.post('/api/publishdraft', updDraft, config) /* trying out new apis */
+
+  const request = axios.post('/api/draft/publishdraft', updDraft, config)
 
   return request.then(response => response.data)
 	       .catch(err => console.log(err))

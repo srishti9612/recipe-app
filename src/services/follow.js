@@ -8,7 +8,9 @@ const addFollowing = (followname) => {
 
    const object = { followname: followname }
 
-   const request = axios.post('/api/addfollowing', { params: object }, config)
+   //const request = axios.post('/api/addfollowing', { params: object }, config)
+
+   const request = axios.post('/api/user/follow', { params: object }, config)
 
    return request.then(response => response.data)
 	         .catch(err => console.log(err))

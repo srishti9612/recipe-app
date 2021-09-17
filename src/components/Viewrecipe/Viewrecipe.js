@@ -27,7 +27,9 @@ const Viewrecipe = () => {
   console.log(type)
 
   const handleBack = () => {
-     console.log(type)
+
+     history.goBack()
+     /*console.log(type)
      if (type === "profile") {
        console.log("inside if")
        //console.log(currentrecipe)
@@ -38,7 +40,7 @@ const Viewrecipe = () => {
         history.push('/bookmarks')
      } else {
        history.push('/home')
-     }
+     }*/
   }
 
   const handleBookmark = () => {

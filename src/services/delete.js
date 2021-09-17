@@ -10,7 +10,9 @@ const deletedraft = draftId => {
    
    const config = conf.getConfig()
 
-   const request = axios.delete(`/api/drafts/${draftId}`, config)
+   //const request = axios.delete(`/api/drafts/${draftId}`, config) /* trying out new apis */
+
+   const request = axios.delete(`/api/draft/${draftId}`, config)
 
    return request.then(response => response.data)
 	         .catch(err => console.log(err))
@@ -21,7 +23,9 @@ const deleterecipe = recipeId => {
 
    const config = conf.getConfig()
 
-   const request = axios.delete(`/api/recipes/${recipeId}`, config)
+   //const request = axios.delete(`/api/recipes/${recipeId}`, config) /* trying out new apis */
+
+   const request = axios.delete(`/api/recipe/${recipeId}`, config)
 
    return request.then(response => response.data)
 	         .catch(err => console.log(err))

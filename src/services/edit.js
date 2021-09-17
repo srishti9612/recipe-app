@@ -6,7 +6,9 @@ const editrecipe = (editedRecipe) => {
 
   const config = conf.getConfig()
 
-  const request = axios.post('/api/edit/recipe', editedRecipe, config)
+  //const request = axios.post('/api/edit/recipe', editedRecipe, config)
+
+  const request = axios.put('/api/recipe/', editedRecipe, config)
 
   return request.then(response => response.data)
 	        .catch(err => console.log(err))
@@ -17,7 +19,9 @@ const editintro = (introObject) => {
   
    const config = conf.getConfig()
 
-   const request = axios.post('/api/edit/intro', introObject, config)
+   //const request = axios.post('/api/edit/intro', introObject, config)
+
+   const request = axios.put('/api/user/intro', introObject, config)
 
    return request.then(response => response.data)
 	         .catch(err => console.log(err))

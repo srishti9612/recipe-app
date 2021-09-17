@@ -229,7 +229,7 @@ const MyProfile = () => {
 	          <Link
 		    id="proflink"
 		    to={{
-		     pathname: "/profile",
+		     pathname: `/profile/${author}`,
 		     state: {
 		       username: author,
 		       following: true,

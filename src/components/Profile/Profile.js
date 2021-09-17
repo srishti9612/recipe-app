@@ -10,16 +10,10 @@ import { ReactComponent as BackLogo } from './../assets/back.svg'
 import { ReactComponent as ProfileImg } from './../assets/profileimg.svg'
 import helper from './../utils/helper.js'
 import Loader from 'react-loader-spinner'
-import { FollowingAuthorsContext } from '../utils/FollowingAuthorsContext'
 
 
 const Profile = () => {
 
-
-  const { followingNames } = useContext(FollowingAuthorsContext)
-
-  console.log(followingNames)
- 
   const history = useHistory()
 
   console.log(history)
@@ -79,7 +73,17 @@ const Profile = () => {
 
    retrieveService.getUserBio(uObject)
 	          .then(returnedObject => {
+         // you are also retrieving user followers here
+         console.log(returnedObject)
 		     console.log(returnedObject[0].bio)
+         console.log(returnedObject[0].followers)
+         let loggedUser = window.localStorage.getItem('loggedUser')
+         let followers = returnedObject[0].followers
+         if(followers.includes(loggedUser)) {
+           setFollowbutton('Following')
+         } else {
+           setFollowbutton('Follow')
+         }
 		     setUbio(returnedObject[0].bio)
 		  })
 
@@ -99,21 +103,21 @@ const Profile = () => {
   const handleFollow = () => {
     /// add a service here that adds the current user to the follower list of 
     /// this user and adds this user to the following list of current user
-	/*temp followService.addFollowing(username)
-	          .then(returnedObject => {
-		     console.log(returnedObject)
-		     if (returnedObject) {
-			if (followButton === "Follow") {
-		          window.localStorage.setItem('following', true)
-		          setFollowbutton("Following")
-			  console.log('Started following')
-		        } else {
-			  window.localStorage.setItem('following', false)
-			  setFollowbutton("Follow")
-			  console.log('stopped following')
-			}
-		     } 
-		  })*/
+	    followService.addFollowing(username)
+	                 .then(returnedObject => {
+		                  console.log(returnedObject)
+		                  if (returnedObject) {
+			                   if (followButton === "Follow") {
+		                         //window.localStorage.setItem('following', true)
+		                         setFollowbutton("Following")
+			                       console.log('Started following')
+		                     } else {
+			                       //window.localStorage.setItem('following', false)
+			                       setFollowbutton("Follow")
+			                       console.log('stopped following')
+			                  }
+		                  } 
+		                })
   }
 
   /*const handleBack = () => {
