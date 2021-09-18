@@ -239,7 +239,7 @@ const Add = () => {
        formData.append('cuisine', cuisine.toLowerCase().trim())
        formData.append('meal', meal)
        formData.append('course', course)
-       formData.append('ingredients', JSON.stringify(helper.formatIngredient(ingredient)))
+       formData.append('ingredients', JSON.stringify(helper.formatIngredientLower(ingredient)))
        formData.append('method', method)
        formData.append('photo', picture)
 
