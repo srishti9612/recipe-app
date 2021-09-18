@@ -56,6 +56,10 @@
    color: white;
 }
 
+#clearfilter:hover, #submitfilter:hover {
+  background-color: #7c7c7c;
+}
+
 .filterbuttons {
   display: flex;
   flex-direction: row;

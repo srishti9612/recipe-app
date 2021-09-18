@@ -15,16 +15,19 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
+      <div className="filterlogodiv">
       <FilterLogo className="filterlogo" onClick={() => setState({ isPaneOpenLeft: true})}/>
+      <div className="filtertext">Filter</div>
+      </div>
       <SlidingPane
-	 isOpen={state.isPaneOpenLeft}
-	 from="left"
-	 width="500px"
-	 onRequestClose={() => {
-	    setState({ isPaneOpenLeft: false})
-	 }}>
-	 <Filters />
-       </SlidingPane>
+	       isOpen={state.isPaneOpenLeft}
+	       from="left"
+	       width="500px"
+	       onRequestClose={() => {
+	          setState({ isPaneOpenLeft: false})
+	    }}>
+	   <Filters />
+     </SlidingPane>
       <div className="middle"></div>
       <FoodLogo className="foodlogo" />
     </div>

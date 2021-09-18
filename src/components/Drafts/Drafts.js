@@ -23,15 +23,15 @@ const Drafts = () => {
      retrieveService
         .getAllDrafts()
         .then(returnedObject => {
-	    console.log(returnedObject)
+	          console.log(returnedObject)
             draftArray = [...returnedObject]
-	    console.log(draftArray)
+	          console.log(draftArray)
             setDraftsAll(draftArray)
             console.log(draftsAll)
-	    let deleId = window.localStorage.getItem('deleId')
-	    let contId = 'dsection2'
-	    helper.scrollfunc(deleId, contId)
-	    window.localStorage.setItem('deleId', 'dId-0')
+	          let deleId = window.localStorage.getItem('deleId')
+	          let contId = 'dsection2'
+	          helper.scrollfunc(deleId, contId)
+	          window.localStorage.setItem('deleId', 'dId-0')
         })
 
   }, [])
@@ -48,21 +48,21 @@ const Drafts = () => {
 	   <div id="alldrafts">Drafts</div>
 	 </div>
 	 <div className="dsection2" id="dsection2">
-         { (draftsAll.length > 0) ?
-           draftsAll.map((draft, i) =>
-	      <div id={"dId-" + i}
-		  className="listitem"
-		  onClick={()=>{
-		     console.log(i)
-		     console.log(draft.date)
-		     window.localStorage.setItem('deleId', 'dId-' + i)
-		     console.log(draft)
-		     history.push('/publishdraft', { draft: draft })
-		  }}>
-               <p id="drafttext">{draft.title}</p>
-	       </div>
-	   ) : (
-	     <div className="loader">
+        { (draftsAll.length > 0) ?
+          draftsAll.map((draft, i) =>
+	        <div id={"dId-" + i}
+		         className="listitem"
+		         onClick={()=>{
+		             console.log(i)
+		             console.log(draft.date)
+		             window.localStorage.setItem('deleId', 'dId-' + i)
+		             console.log(draft)
+		             history.push('/publishdraft', { draft: draft })
+		          }}>
+              <p id="drafttext">{draft.title}</p>
+	        </div>
+	      ) : (
+	      <div className="loader">
               <Loader
                 id="loader-comp"
                 type="BallTriangle"
@@ -70,14 +70,14 @@ const Drafts = () => {
                 height={60}
                 width={60}
                 timeout={3000}/>
-             </div>
-	   )
-         }
+        </div>
+	      )
+        }
 	 </div>
-      </div>
-      <div className="bar">
-      </div>
-    </div>
+  </div>
+  <div className="bar">
+  </div>
+  </div>
   )
 }
 

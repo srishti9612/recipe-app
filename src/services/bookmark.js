@@ -6,7 +6,7 @@ const  addbookmark = (bookmarkId) => {
     console.log(bookmarkId)
     
     const config = conf.getConfig()
-    // same as old api //
+   
     const request = axios.post('/api/bookmark/', bookmarkId, config)
 
     return request.then(response => response.data)

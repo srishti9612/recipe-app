@@ -5,9 +5,7 @@ const editrecipe = (editedRecipe) => {
   console.log("inside edit recipe service")
 
   const config = conf.getConfig()
-
-  //const request = axios.post('/api/edit/recipe', editedRecipe, config)
-
+  
   const request = axios.put('/api/recipe/', editedRecipe, config)
 
   return request.then(response => response.data)
@@ -18,8 +16,6 @@ const editintro = (introObject) => {
    console.log("inside edit bio service")
   
    const config = conf.getConfig()
-
-   //const request = axios.post('/api/edit/intro', introObject, config)
 
    const request = axios.put('/api/user/intro', introObject, config)
 

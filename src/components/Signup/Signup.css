@@ -43,6 +43,10 @@
   margin-left: 20vh;
 }
 
+#ssignup:hover {
+  background-color: #7c7c7c;
+}
+
 .slabel {
   /*color: white;*/
   /*color: #424242;*/

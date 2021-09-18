@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
-//import { toast } from 'react-toastify'
-//import 'react-toastify/dist/ReactToastify.css'
 import './../Common.css'
 import './Add.css'
 import { ReactComponent as FoodLogo } from './../assets/food.svg'
@@ -12,7 +10,6 @@ import editService from '../../services/edit.js'
 import deleteService from '../../services/delete.js'
 import helper from './../utils/helper.js'
 
-//toast.configure()
 
 const Add = () => {
 
@@ -44,8 +41,6 @@ const Add = () => {
 
    const [ recipeId, setId ] = useState('')
 
-   //const [ editrecipe, setEditrecipe ] = useState('')
-
    const [ imgPreview, setImgPreview ] = useState({
       file: null
    })
@@ -75,12 +70,11 @@ const Add = () => {
        setType(location.state.type)
        editrecipe = location.state.recipe
        setId(editrecipe.id)
-       //setEditrecipe(location.state.recipe)
        setTitle(editrecipe.title)
-       setCuisine(editrecipe.cuisine)
+       setCuisine((editrecipe.cuisine.charAt(0).toUpperCase() + editrecipe.cuisine.substring(1)).trim())
        setMeal(editrecipe.meal)
        setCourse(editrecipe.course)
-       setIngredient(editrecipe.ingredients)
+       setIngredient(helper.formatIngredientUpper(editrecipe.ingredients))
        setMethod(editrecipe.method)
        setPicture(editrecipe.photo)
        console.log(editrecipe.photo)
@@ -147,8 +141,10 @@ const Add = () => {
 
    const handleIngredientChange = (e) => {
      const updatedIngredients = [...ingredient]
+	 console.log(e.target.value) 
      updatedIngredients[e.target.dataset.idx][e.target.className] = e.target.value
-     setIngredient(updatedIngredients)
+	 setIngredient(updatedIngredients)
+	 console.log(updatedIngredients)
    }
 
    const handleBack = () => {
@@ -171,12 +167,22 @@ const Add = () => {
        console.log(myForm.current.buttonId)
        console.log(addService.addrecipe)
 
+	   let formatedTitle = helper.capitalizeFirst(title)
+	   console.log(formatedTitle)
+
+	   let formatedIngredient = helper.formatIngredientLower(ingredient)
+
+       console.log(formatedIngredient)
+	   console.log(ingredient)
+
+	   let formatedCuisine = cuisine.toLowerCase().trim()
+
        const newRecipe = {
-	       title: title,
-	       cuisine: cuisine,
+	       title: formatedTitle,
+	       cuisine: formatedCuisine,
 	       meal: meal,
 	       course: course,
-	       ingredients: ingredient,
+	       ingredients: formatedIngredient,
 	       method: method,
 	       photo: picture,
        }
@@ -191,11 +197,11 @@ const Add = () => {
  
        if (validation.result) {
          const formData = new FormData()
-         formData.append('title', title)
-         formData.append('cuisine', cuisine)
+         formData.append('title', formatedTitle)
+         formData.append('cuisine', formatedCuisine)
          formData.append('meal', meal)
          formData.append('course', course)
-         formData.append('ingredients', JSON.stringify(ingredient))
+         formData.append('ingredients', JSON.stringify(formatedIngredient))
          formData.append('method', method)
          formData.append('photo', picture)
 
@@ -217,24 +223,23 @@ const Add = () => {
      if (buttonId === "savedraft") {
        
        console.log(myForm.current.buttonId)
-       //console.log(addService.addrecipe)
-	//add a service for drafts
+
        const newDraft = {
             title: title,
             cuisine: cuisine,
-	    meal: meal,
-	    course: course,
+	        meal: meal,
+	        course: course,
             ingredients: ingredient,
             method: method,
-	    photo: picture
+	        photo: picture
        }
 
        const formData = new FormData()
-       formData.append('title', title)
-       formData.append('cuisine', cuisine)
+       formData.append('title', helper.capitalizeFirst(title))
+       formData.append('cuisine', cuisine.toLowerCase().trim())
        formData.append('meal', meal)
        formData.append('course', course)
-       formData.append('ingredients', JSON.stringify(ingredient))
+       formData.append('ingredients', JSON.stringify(helper.formatIngredient(ingredient)))
        formData.append('method', method)
        formData.append('photo', picture)
 
@@ -256,19 +261,21 @@ const Add = () => {
      }
 
      if (buttonId === "update") {
-       /// add a service to update recipe
+     
        console.log(myForm.current.buttonId) 
        
        const editedRecipe = {
-	    _id: recipeId,
+	        _id: recipeId,
             title: title,
             cuisine: cuisine,
-	    meal: meal,
-	    course: course,
+	        meal: meal,
+	        course: course,
             ingredients: ingredient,
-	    method: method,
-	    photo: picture
+	        method: method,
+	        photo: picture
        }
+
+       console.log(editedRecipe)
 
        let validation = helper.recipevalfunc(editedRecipe)
        console.log(validation)
@@ -279,31 +286,31 @@ const Add = () => {
        if (validation.result) {
          const formData = new FormData()
          formData.append('_id', editedRecipe._id)
-         formData.append('title', editedRecipe.title)
-         formData.append('cuisine', editedRecipe.cuisine)
+         formData.append('title', helper.capitalizeFirst(editedRecipe.title))
+         formData.append('cuisine', editedRecipe.cuisine.toLowerCase().trim())
          formData.append('meal', editedRecipe.meal)
          formData.append('course', editedRecipe.course)
-         formData.append('ingredients', JSON.stringify(editedRecipe.ingredients))
+         formData.append('ingredients', JSON.stringify(helper.formatIngredientLower(editedRecipe.ingredients)))
          formData.append('method', editedRecipe.method)
          formData.append('photo', editedRecipe.photo)
 
          console.log(...formData)
 
          editService.editrecipe(formData)
-	            .then(returnedObject => {
-		        console.log(returnedObject)
-			helper.showtoast("Recipe Updated!!")
-		    })
+	                .then(returnedObject => {
+		                console.log(returnedObject)
+			            helper.showtoast("Recipe Updated!!")
+		            })
        }
      }
 
      if (buttonId === "delete") {
        deleteService.deleterecipe(recipeId)
-	            .then(returnedObject => {
-		       console.log(returnedObject)
-		       helper.showtoast("Recipe Deleted!!")
-		       history.push('/myprofile')
-		    })
+	                .then(returnedObject => {
+		                console.log(returnedObject)
+		                helper.showtoast("Recipe Deleted!!")
+		                history.push('/myprofile')
+		            })
      }
 
   }
@@ -467,11 +474,11 @@ i		         name="remove"
 	    <label htmlFor="new" 
 	           className="newlabel">Add More</label>
 	    <input
-              id="new"
-	      className="addbutton"
-              type="button"
-              onClick={addIngredient}
-            />
+           id="new"
+	       className="addbutton"
+           type="button"
+           onClick={addIngredient}
+        />
 	  </div>
 	  <div className="labeldiv">
 	   <label htmlFor="method" className="addlabels">Method</label>
@@ -489,40 +496,40 @@ i		         name="remove"
           { (type === "edit") ?
 	    ( <>
 	      <input
-		type="submit"
-		id="update"
-		className="update"
-		value="Update"
-		name="update"
-		onClick={e => myForm.current.buttonId=e.target.id}
+	      	 type="submit"
+		     id="update"
+		     className="update"
+		     value="Update"
+		     name="update"
+		     onClick={e => myForm.current.buttonId=e.target.id}
 	      />
 	      <input
-		type="submit"
-		id="delete"
-		className="delete"
-		value="Delete"
-		name="delete"
-		onClick={e => myForm.current.buttonId=e.target.id}
+		     type="submit"
+		     id="delete"
+		     className="delete"
+		     value="Delete"
+		     name="delete"
+		     onClick={e => myForm.current.buttonId=e.target.id}
 	      />
 	      </>
 	    ) :
 	    (
 	      <>	    
 	      <input 
-	        type="submit" 
-	        id="publish"
-	        className="publish"
-	        value="Publish"
-	        name="publish"
-	        onClick={e => myForm.current.buttonId=e.target.id}
+	         type="submit" 
+	         id="publish"
+	         className="publish"
+	         value="Publish"
+	         name="publish"
+	         onClick={e => myForm.current.buttonId=e.target.id}
 	      />
 	      <input
-	        type="submit"
-	        id="savedraft"
-	        className="savedraft"
-	        value="Draft"
-	        name="draft"
-	        onClick={e => myForm.current.buttonId=e.target.id}
+	         type="submit"
+	         id="savedraft"
+	         className="savedraft"
+	         value="Draft"
+	         name="draft"
+	         onClick={e => myForm.current.buttonId=e.target.id}
 	      />
 	      </>
 	    )

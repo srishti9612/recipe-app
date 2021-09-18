@@ -26,8 +26,8 @@ const Login = ({ setLoggedIn }) => {
      event.preventDefault()
 
      const credObject = {
-       username: username,
-       password: password,
+       username: username.trim(),
+       password: password.trim(),
      }
 
      console.log(loginService.login)
@@ -35,22 +35,22 @@ const Login = ({ setLoggedIn }) => {
      loginService
        .login(credObject)
        .then(returnedObject => {
-	      console.log(returnedObject)
-              if (returnedObject) {
-	        setLoggedIn(true)
-	        tokenService.setToken(returnedObject.token)
-		window.localStorage.setItem(
-		  'loggedIn', 'true'
-		)
-		window.localStorage.setItem(
-		  'loggedUser', username
-		)
-		helper.showtoast("Login Successful!!")
-		history.push('/home')
-	      } else {
-	        console.log('error while loggin in')
-		helper.showtoast("Invalid Credentials!!")
-	      }
+	         console.log(returnedObject)
+             if (returnedObject) {
+	            setLoggedIn(true)
+	            tokenService.setToken(returnedObject.token)
+		        window.localStorage.setItem(
+		             'loggedIn', 'true'
+	         	)
+		        window.localStorage.setItem(
+		            'loggedUser', username
+		        )
+		        helper.showtoast("Login Successful!!")
+		        history.push('/home')
+	        } else {
+	            console.log('error while loggin in')
+		        helper.showtoast("Invalid Credentials!!")
+	        }
        })
   }
 
@@ -59,9 +59,9 @@ const Login = ({ setLoggedIn }) => {
      <div className="heading">COOKBOOK</div>
      <div className="subheading">A Food Recipe Sharing Application</div>
      <div className="lformcontainer">
-       <form onSubmit={handleLogin}>
-         <label htmlFor="username" className="loglabel">Username</label>
-	 <input
+    <form onSubmit={handleLogin}>
+    <label htmlFor="username" className="loglabel">Username</label>
+	<input
 	   type="text"
 	   name="username"
 	   id="username"
@@ -81,11 +81,10 @@ const Login = ({ setLoggedIn }) => {
 	   id="login"
 	   value="Login"
 	   name="submit"
-	   className="ripple"
 	 />
 	 <Link id="slink" to="/signup">Sign Up</Link>
-       </form>
-      </div>
+    </form>
+    </div>
    </div>
   )
 }

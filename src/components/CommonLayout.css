@@ -108,5 +108,7 @@
   /*background-color: lightgreen;*/
   height: 100%;
   white-space: pre-wrap;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 

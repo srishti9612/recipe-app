@@ -18,8 +18,6 @@ const Viewrecipe = () => {
 
   const ingredients = currentrecipe.ingredients
 
- // const executeScroll = location.state.executeScroll
-
   console.log(currentrecipe)
  
   const type = location.state.type
@@ -29,18 +27,7 @@ const Viewrecipe = () => {
   const handleBack = () => {
 
      history.goBack()
-     /*console.log(type)
-     if (type === "profile") {
-       console.log("inside if")
-       //console.log(currentrecipe)
-       history.push('/profile', { username: currentrecipe.author })
-     } else if (type === "myprofile") {
-        history.push('/myprofile')
-     } else if (type === "bookmarks") {
-        history.push('/bookmarks')
-     } else {
-       history.push('/home')
-     }*/
+    
   }
 
   const handleBookmark = () => {
@@ -51,14 +38,14 @@ const Viewrecipe = () => {
      }
 
      bookmarkService.addbookmark(bookmarkId)
-	            .then(returnedObject => {
-		       console.log(returnedObject)
-		       if (returnedObject === null) {
-		          helper.showtoast("Bookmark Removed!!")
-		       } else {
-		         helper.showtoast("Bookmark Added")
-		       }
-		    })
+	                 .then(returnedObject => {
+		                 console.log(returnedObject)
+		                 if (returnedObject === null) {
+		                     helper.showtoast("Bookmark Removed!!")
+		                 } else {
+		                     helper.showtoast("Bookmark Added")
+		                }
+		              })
   }
 
   console.log(currentrecipe)
@@ -73,34 +60,34 @@ const Viewrecipe = () => {
       </div>
       <div className="content">
         <div className="viewrecipe">
-	 <div id="title" className="title">{currentrecipe.title}</div>
-	 <div id="author" className="author"><i>- {currentrecipe.author}</i></div>
-	 <div id="foodimage" className="foodimage">
-	    <img 
-	      src={currentrecipe.photo} 
-	      alt="Not Available"
-	      id="recipephoto"/>
+	        <div id="title" className="title">{currentrecipe.title}</div>
+	        <div id="author" className="author"><i>- {currentrecipe.author}</i></div>
+	        <div id="foodimage" className="foodimage">
+	         <img 
+	           src={currentrecipe.photo} 
+	           alt="Not Available"
+	           id="recipephoto"/>
+	         </div>
+	         <div id="cuisine" className="cuisine"><b>Cuisine:</b> {currentrecipe.cuisine.charAt(0).toUpperCase() + currentrecipe.cuisine.substring(1)}</div>
+	         <div id="meal" className="meal"><b>Meal:</b> {currentrecipe.meal}</div>
+	         <div id="course" className="course"><b>Course:</b> {currentrecipe.course}</div>
+	         <div id="ingredients" className="ingredients"><b>Ingredients:</b></div>
+	         {
+	          ingredients.map((ingredient, i) => 
+	            <div id={"Ing-" + i} className="ingredient">
+	              <div className="Name" id="Name">{helper.capitalizeFirst(ingredient.name)}:</div>	
+	              <div className="Quantity" id="Quantity">{ingredient.quantity}</div>
+	            </div>
+	          )
+	         }
+	        <div id="methodheading" className="methodheading"><b>Method:</b></div>
+	        <div id="method" className="recipemethod">{currentrecipe.method}</div>
 	 </div>
-	 <div id="cuisine" className="cuisine"><b>Cuisine:</b> {currentrecipe.cuisine}</div>
-	 <div id="meal" className="meal"><b>Meal:</b> {currentrecipe.meal}</div>
-	 <div id="course" className="course"><b>Course:</b> {currentrecipe.course}</div>
-	 <div id="ingredients" className="ingredients"><b>Ingredients:</b></div>
-	 {
-	   ingredients.map((ingredient, i) => 
-	      <div id={"Ing-" + i} className="ingredient">
-	       <div className="Name" id="Name">{ingredient.name}:</div>	
-	       <div className="Quantity" id="Quantity">{ingredient.quantity}</div>
-	      </div>
-	   )
-	 }
-	 <div id="methodheading" className="methodheading"><b>Method:</b></div>
-	 <div id="method" className="recipemethod">{currentrecipe.method}</div>
-	</div>
-      </div>
-      <div className="bar">
-	<BookmarkLogo className="bookmarklogo" onClick={handleBookmark}/>
-      </div>
-    </div>
+   </div>
+   <div className="bar">
+	  <BookmarkLogo className="bookmarklogo" onClick={handleBookmark}/>
+   </div>
+   </div>
   )
 }
 

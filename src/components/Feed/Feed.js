@@ -7,18 +7,13 @@ import { Link } from "react-router-dom"
 import helper from './../utils/helper.js'
 import Loader from 'react-loader-spinner'
 
-const Feed = ({ followingNames }) => {
+const Feed = () => {
 
-  console.log(followingNames)
   console.log(helper)
-
-  //followingnames is to be used to show whether or not the user is followed
   
   const { filter } = useContext(FilterContext)
 
   const [ recipesAll, setrecipesAll ] = useState([])
-
-  const followingAuthors = followingNames
 
   const history = useHistory()
 
@@ -33,27 +28,28 @@ const Feed = ({ followingNames }) => {
     document.getElementById("Followee").style.fontWeight = "normal"
     
     window.localStorage.setItem('feedtype', 'All')
-    // add a script to retrieve all the recipes in recipes array
-
+   
     setrecipesAll([])
 	  
     let filterObj = JSON.parse(window.localStorage.getItem('filter'))
     console.log("local storage filter value")
     console.log(filterObj)
+    console.log(helper.formatFilterObj(filterObj))
+    filterObj = helper.formatFilterObj(filterObj)
 
     retrieveService.getAll(filterObj)
-	           .then(returnedObject => {
-			recipeArray = []
-			setrecipesAll(recipeArray)
-		        recipeArray = [...returnedObject]
-			setrecipesAll(recipeArray)
-			console.log(recipesAll)
-			let eleId = window.localStorage.getItem('eleId')
-                        console.log(eleId)
-                        let contId = 'feed2'
-                        helper.scrollfunc(eleId, contId)
-                        window.localStorage.setItem('eleId', 0)
-		   })
+	                 .then(returnedObject => {
+			                 recipeArray = []
+			                 setrecipesAll(recipeArray)
+		                   recipeArray = [...returnedObject]
+			                 setrecipesAll(recipeArray)
+			                 console.log(recipesAll)
+			                 let eleId = window.localStorage.getItem('eleId')
+                       console.log(eleId)
+                       let contId = 'feed2'
+                       helper.scrollfunc(eleId, contId)
+                      window.localStorage.setItem('eleId', 0)
+		               })
   }
 
   const handleFollowee = () => {
@@ -61,25 +57,24 @@ const Feed = ({ followingNames }) => {
     document.getElementById("Followee").style.fontWeight = "bold"
     document.getElementById("All").style.fontWeight = "normal"
 
-    // add a script to retrieve all the recipes by followees in recipes array
-
+   
     window.localStorage.setItem('feedtype', 'Following')
 
     setrecipesAll([])
     retrieveService.getFollowingRecipes()
-	           .then(returnedObject => {
-		      recipeArray = []
-		      setrecipesAll(recipeArray)
-		      recipeArray = [...returnedObject]
-		      console.log(recipeArray)
-		      setrecipesAll(recipeArray)
-		      console.log(recipesAll)
-		      let eleId = window.localStorage.getItem('eleId')
+	                 .then(returnedObject => {
+		                  recipeArray = []
+		                  setrecipesAll(recipeArray)
+		                  recipeArray = [...returnedObject]
+		                  console.log(recipeArray)
+		                  setrecipesAll(recipeArray)
+		                  console.log(recipesAll)
+		                  let eleId = window.localStorage.getItem('eleId')
                       console.log(eleId)
                       let contId = 'feed2'
                       helper.scrollfunc(eleId, contId)
                       window.localStorage.setItem('eleId', 0)
-		   })
+		               })
   }
 
   useEffect(() => {
@@ -87,7 +82,7 @@ const Feed = ({ followingNames }) => {
      let filterObj = JSON.parse(window.localStorage.getItem('filter'))
      console.log("local storage filter value")
      console.log(filterObj)
-     
+     filterObj = helper.formatFilterObj(filterObj)
   
      let feedtype = window.localStorage.getItem('feedtype')
 
@@ -102,7 +97,7 @@ const Feed = ({ followingNames }) => {
 	         recipeArray = []
 	         setrecipesAll(recipeArray)
 	         recipeArray = [...returnedObject]
-                 setrecipesAll(recipeArray)
+           setrecipesAll(recipeArray)
 	         console.log(recipesAll)
 	         console.log(recipesAll.length)
        })
@@ -124,43 +119,36 @@ const Feed = ({ followingNames }) => {
      <div id="feed2">
        { (recipesAll.length > 0) ?
          recipesAll.map((recipe, i) =>
-	    <div id={i}
-		 key={i}
-		 className="listitem"
-		 data-animation-offset={i}
-		 onClick={() => {
-		   window.localStorage.setItem('eleId', i)
-	           console.log(window.localStorage.getItem('eleId'))
-		 }}>
-	      <p id="recipetext" 
-		 onClick={() => {
-		    console.log(i)
-		    history.push('/viewrecipe', {recipe: recipe})
-		 }}>{recipe.title}</p>
-              <i id="create">created by: </i>
-	      <Link
-		id="prolink"
-		to={{
-		pathname: (recipe.author === window.localStorage.getItem('loggedUser')) ? "/myprofile" : `/profile/${recipe.author}`,
-	        state: { 
-	         username: recipe.author, 
-		 following: followingAuthors.includes(recipe.author) ? true : false,
-		 type: "home"
-	        }
-	      }}><i>{recipe.author}</i></Link>
+	     <div id={i}
+		       key={i}
+		       className="listitem"
+		       data-animation-offset={i}
+		       onClick={() => {
+		          window.localStorage.setItem('eleId', i)
+	            console.log(window.localStorage.getItem('eleId'))
+		   }}>
+	    <p id="recipetext" 
+		     onClick={() => {
+		         console.log(i)
+		         history.push('/viewrecipe', {recipe: recipe})}}>{recipe.title}</p>
+            <i id="create">created by: </i>
+	          <Link
+		           id="prolink"
+		           to={{
+		              pathname: (recipe.author === window.localStorage.getItem('loggedUser')) ? "/myprofile" : `/profile/${recipe.author}`}}><i>{recipe.author}</i></Link>
 	    </div>
-	 ) : (
-	  <div className="loader">
-	   <Loader
-	     id="loader-comp"
-	     type="BallTriangle"
-	     color="#737373"
-	     height={60}
-	     width={60}
-	     timeout={3000}/>
-	  </div>
-	 )
-       }
+	    ) : (
+	    <div className="loader">
+	      <Loader
+	        id="loader-comp"
+	        type="BallTriangle"
+	        color="#737373"
+	        height={60}
+	        width={60}
+	        timeout={3000}/>
+	    </div>
+	    )
+      }
      </div>
     </div>
   )

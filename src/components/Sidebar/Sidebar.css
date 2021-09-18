@@ -1,11 +1,9 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  /*background-color: #424242;*/
   background-image: linear-gradient(120deg, #252525, #5c5c5c);
   width: 120vh;
   height: 100vh;
-  /*cursor: pointer;*/
 }
 
 .foodlogo {
@@ -21,10 +19,23 @@
 
 .filterlogo {
   align-self: flex-start;
-  height: 4%;
-  width: 8%;
+  height: 6%;
+  width: 10%;
   margin-top: 2vh;
   margin-left: 2vh;
   cursor: pointer;
 }
 
+.filterlogodiv {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width:100%;
+}
+
+.filtertext {
+  color: white;
+  margin-left: 4vh;
+  margin-top: 3vh;
+  font-size: 18px;
+}

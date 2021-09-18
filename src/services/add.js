@@ -7,7 +7,6 @@ const addrecipe = (newRecipe) => {
 
   const config = conf.getConfig()	
 
-  //const request = axios.post('/api/add/', newRecipe, config) /* trying out new apis */
   const request = axios.post('/api/recipe/', newRecipe, config)
 
   return request.then(response => response.data)

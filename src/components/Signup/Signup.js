@@ -39,8 +39,8 @@ const Signup = () => {
      console.log('inside handle signup')
      e.preventDefault()
      const userObject = {
-       username: username,
-       password: password,
+       username: username.trim(),
+       password: password.trim(),
        bio: bio
      }
 
@@ -53,81 +53,80 @@ const Signup = () => {
 
      if(passwordmatch){
        signupService
-	 .signup(userObject)
-	 .then(returnedUser => { 
-            setUsername('')
-	    setPassword('')
-	    setConfpassword('')
-	    setBio('')		 
-	    if(!returnedUser) {
-	       helper.showtoast("A user with that username already exists. Please try again!!")
-	    } else {
-	       console.log("signup successful")
-	       helper.showtoast("Signup Successful!!")
-	    }
-	 })
-         .catch(err => console.log(err))
+	          .signup(userObject)
+	          .then(returnedUser => { 
+                setUsername('')
+	              setPassword('')
+	              setConfpassword('')
+	              setBio('')		 
+	              if(!returnedUser) {
+	                  helper.showtoast("A user with that username already exists. Please try again!!")
+	              } else {
+	                 console.log("signup successful")
+	                 helper.showtoast("Signup Successful!!")
+	              }
+	          })
+            .catch(err => console.log(err))
      }
   }
 
   return (
     <div className="signup">
-       <div className="sformcontainer">
-	<form onSubmit={handleSignup}>
+    <div className="sformcontainer">
+    <form onSubmit={handleSignup}>
          <label 
-	    htmlFor="susername" 
-	    className="slabel">Username</label>
+	          htmlFor="susername" 
+	          className="slabel">Username</label>
          <input
-           type="text"
-           name="username"
-           id="susername"
-           value={username}
-           onChange={handleUsernameChange}
-	   required
+            type="text"
+            name="username"
+            id="susername"
+            value={username}
+            onChange={handleUsernameChange}
+	          required
          />
          <label 
-	    htmlFor="spassword" 
-	    className="slabel">Password</label>
+	          htmlFor="spassword" 
+	          className="slabel">Password</label>
          <input
-           type="password"
-           name="password"
-           id="spassword"
-           value={password}
-           onChange={handlePasswordChange}
-	   required
+            type="password"
+            name="password"
+            id="spassword"
+            value={password}
+            onChange={handlePasswordChange}
+	         required
          />
          <label 
-	    htmlFor="sconfpassword" 
-	    className="slabel">Confirm Password</label>
+	          htmlFor="sconfpassword" 
+	          className="slabel">Confirm Password</label>
          <input
-           type="password"
-           name="confpassword"
-           id="sconfpassword"
-           value={confpassword}
-           onChange={handleConfpasswordChange}
-	   required
+            type="password"
+            name="confpassword"
+            id="sconfpassword"
+            value={confpassword}
+            onChange={handleConfpasswordChange}
+	          required
          />
 	 <label 
 	    htmlFor="sbio"
 	    className="slabel">Bio</label>
 	 <textarea
-	   type="text"
-	   name="bio"
-	   id="sbio"
-	   value={bio}
-	   onChange={handleBioChange}
+	    type="text"
+	    name="bio"
+	    id="sbio"
+	    value={bio}
+	    onChange={handleBioChange}
 	 />
-         <input
-           type="submit"
-	   className="ripple"
-           id="ssignup"
-           value="Signup"
-           name="submit"
-         />
-        </form>
-      </div>
-    </div>
-  )
+   <input
+      type="submit"
+      id="ssignup"
+      value="Signup"
+      name="submit"
+    />
+   </form>
+   </div>
+  </div>
+ )
 }
 
 export default Signup

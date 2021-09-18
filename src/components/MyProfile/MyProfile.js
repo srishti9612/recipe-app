@@ -38,28 +38,28 @@ const MyProfile = () => {
    useEffect(() => {
      console.log("inside useEffect")
 
-     retrieveService.getUserBio(uObject)
-	            .then(returnedObject => {
-		      console.log(returnedObject[0].bio)
-		      setUbio(returnedObject[0].bio)
-		    })
+     retrieveService.getUserInfo(uObject)
+	                .then(returnedObject => {
+		                console.log(returnedObject[0].bio)
+		                setUbio(returnedObject[0].bio)
+		            })
 
      retrieveService.getUserRecipes(uObject)
-	            .then(returnedObject => {
-		      setUrecipes(returnedObject)
-		      console.log(returnedObject)
-		      let mproId = window.localStorage.getItem('mproId')
-                      let contId = 'section2'
-                      helper.scrollfunc(mproId, contId)
-                      window.localStorage.setItem('mproId', 'mproId-0')
-		    })
+	                .then(returnedObject => {
+		                 setUrecipes(returnedObject)
+		                 console.log(returnedObject)
+		                 let mproId = window.localStorage.getItem('mproId')
+                         let contId = 'section2'
+                         helper.scrollfunc(mproId, contId)
+                         window.localStorage.setItem('mproId', 'mproId-0')
+		            })
 
      retrieveService.getFollowingNames()
-	            .then(returnedObject => {
-		      console.log(returnedObject)
-		      setFollowingNames([...returnedObject])
-		      setFollowingNumber([...returnedObject].length)
-		    })
+	                 .then(returnedObject => {
+		                console.log(returnedObject)
+		                setFollowingNames([...returnedObject])
+		                setFollowingNumber([...returnedObject].length)
+		            })
    }, [])
 
    const handleBack = () => {
@@ -88,12 +88,12 @@ const MyProfile = () => {
       }
 
       editService.editintro(introObject)
-	         .then(returnedObject => {
-		   console.log(returnedObject)
-	           setUbio(newIntro)
-		   setIntroedit(false)
-	           helper.showtoast("Intro Edited!!")
-		 })
+	             .then(returnedObject => {
+		             console.log(returnedObject)
+	                 setUbio(newIntro)
+		             setIntroedit(false)
+	                 helper.showtoast("Intro Edited!!")
+		        })
    }
 
    const handleSelected = (e) => {
@@ -101,29 +101,28 @@ const MyProfile = () => {
 
       if (Id === "userRecipes") {
          setSelected('recipes')
-	 window.localStorage.setItem('selected', 'recipes')
+	     window.localStorage.setItem('selected', 'recipes')
          document.getElementById(Id).style.fontWeight = "bold"
-	 document.getElementById('followingAuthors').style.fontWeight = "normal"
+	     document.getElementById('followingAuthors').style.fontWeight = "normal"
       }
      
       if (Id === "followingAuthors") {
-	  setSelected('followingAuthors')
-	  window.localStorage.setItem('selected', 'followingAuthors')
-          document.getElementById(Id).style.fontWeight = "bold"
-          document.getElementById("userRecipes").style.fontWeight = "normal"
+	     setSelected('followingAuthors')
+	     window.localStorage.setItem('selected', 'followingAuthors')
+         document.getElementById(Id).style.fontWeight = "bold"
+         document.getElementById("userRecipes").style.fontWeight = "normal"
       }
    }
 
    return (
      <div className="flex-container">
        <div className="Side">
-          <BackLogo className="backlogo" onClick={handleBack}/>
-	  <div className="middle"></div>
-	  <FoodLogo className="foodlogo"/>
+       <BackLogo className="backlogo" onClick={handleBack}/>
+	    <div className="middle"></div>
+	    <FoodLogo className="foodlogo"/>
        </div>
        <div className="content">
-	 <div className="section1">
-
+	    <div className="section1">
            <div className="row1">
               <div className="r1c1">
                 <ProfileImg className="profileimg" />
@@ -145,33 +144,33 @@ const MyProfile = () => {
 	           </div>
 	           {
 	            (introEdit) ? 
-		    (
-		      <div className="introEdit">
-		        <form onSubmit={introEditSubmit} className="introform">
-			 <div className="formcontents">
-			  <textarea
-			    type="text"
-			    name="intro"
-			    id="intro"
-			    className="introTextarea"
-			    value={newIntro}
-			    onChange={handleIntroChange}
-			  />
-			  <input
-			    type="submit"
-			    id="sintroedit"
-			    value="save"
-			    className="introsave"
-			    name="save"
-			  />
-			 </div>
-		        </form>
-		      </div>
-		    ) : (
+		        (
+		         <div className="introEdit">
+		           <form onSubmit={introEditSubmit} className="introform">
+			       <div className="formcontents">
+			       <textarea
+			          type="text"
+			          name="intro"
+			          id="intro"
+			          className="introTextarea"
+			          value={newIntro}
+			          onChange={handleIntroChange}
+			       />
+			       <input
+			          type="submit"
+			          id="sintroedit"
+			          value="save"
+			          className="introsave"
+			          name="save"
+			       />
+			      </div>
+		          </form>
+		        </div>
+		        ) : (
 	             <div className="userBio">{ubio}</div>
-		    )
+		        )
 	           }
-                </div>
+               </div>
               </div>
           </div>
 
@@ -179,9 +178,9 @@ const MyProfile = () => {
             <div className="userRecipes"
 	         id="userRecipes"
 	         onClick={handleSelected}>Recipes</div>
-	    <div className="followingAuthors"
-	         id="followingAuthors"
-	         onClick={handleSelected}>Following ({followingNumber}) </div>
+	       <div className="followingAuthors"
+	            id="followingAuthors"
+	            onClick={handleSelected}>Following ({followingNumber}) </div>
            </div>
 
 	 </div>
@@ -196,19 +195,19 @@ const MyProfile = () => {
                      data-animation-offset={i}>
                 <p id="recipetext"
                    onClick={() => {
-		   window.localStorage.setItem('mproId', 'mproId-' + i)
+		           window.localStorage.setItem('mproId', 'mproId-' + i)
                    history.push('/viewrecipe', {recipe: recipe, type: 'myprofile'})}}>{recipe.title}</p>
                 <Link
-	          id="editlink"
-	          to={{
-	          pathname: "/add",
-	          state: {
-	            recipe: recipe,
-	            type: "edit"
-	          }
-	        }}>Edit</Link>
+	               id="editlink"
+	               to={{
+	                 pathname: "/add",
+	                 state: {
+	                    recipe: recipe,
+	                    type: "edit"
+	               }
+	              }}>Edit</Link>
                 </div>
-              ) : (
+            ) : (
 	        <div className="loader">
                   <Loader
                      id="loader-comp"
@@ -217,9 +216,9 @@ const MyProfile = () => {
                      height={60}
                      width={60}
                      timeout={3000}/>
-                </div>
+            </div>
 	      )
-            ) 
+        ) 
 	    : 
 	    (
 	     <div>
@@ -227,27 +226,22 @@ const MyProfile = () => {
 	        followingNames.map((author, i) => 
 	         <div className='followlist' id="followlist">
 	          <Link
-		    id="proflink"
-		    to={{
-		     pathname: `/profile/${author}`,
-		     state: {
-		       username: author,
-		       following: true,
-		       type: "myprofile"
-		     }
-		   }}>{author}</Link>
-	          </div>
+		         id="proflink"
+		         to={{
+		         pathname: `/profile/${author}`
+		      }}>{author}</Link>
+	        </div>
 	        )
 	       }
 	     </div>
 	    )
-           }
+        }
 
 	 </div>
 
-       </div>
-       <div className="bar"></div>
-     </div>
+    </div>
+    <div className="bar"></div>
+    </div>
    )
 }
 

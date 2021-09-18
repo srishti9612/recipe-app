@@ -8,7 +8,6 @@ import draftService from '../../services/draft.js'
 import deleteService from '../../services/delete.js'
 import helper from './../utils/helper.js'
 
-/* note - Display a photo in photo preview mode and give a change photo option */
 const PublishDraft = () => {
 
   const location = useLocation()
@@ -23,9 +22,9 @@ const PublishDraft = () => {
 
   const courses = ["Select", "Soup", "Starters", "Accompaniments", "Main Course", "Dessert"]
 
-  const [ title, setTitle ] = useState(currentdraft.title)
+  const [ title, setTitle ] = useState(helper.capitalizeFirst(currentdraft.title))
 
-  const [ cuisine, setCuisine ] = useState(currentdraft.cuisine)
+  const [ cuisine, setCuisine ] = useState(currentdraft.cuisine.charAt(0).toUpperCase() + currentdraft.cuisine.substring(1))
 
   const [ meal, setMeal ] = useState(currentdraft.meal)
 
@@ -35,7 +34,7 @@ const PublishDraft = () => {
 
   const ingredients = currentdraft.ingredients
 
-  const [ ingredient, setIngredient ] = useState(ingredients)
+  const [ ingredient, setIngredient ] = useState(helper.formatIngredientUpper(ingredients))
 
   const [ photo, setPhoto ] = useState(currentdraft.photo)
 
@@ -143,11 +142,11 @@ const PublishDraft = () => {
     const formData = new FormData()
 
     formData.append('_id', updatedDraft._id)
-    formData.append('title', updatedDraft.title)
-    formData.append('cuisine', updatedDraft.cuisine)
+    formData.append('title', helper.capitalizeFirst(updatedDraft.title))
+    formData.append('cuisine', updatedDraft.cuisine.toLowerCase())
     formData.append('meal', updatedDraft.meal)
     formData.append('course', updatedDraft.course)
-    formData.append('ingredients', JSON.stringify(updatedDraft.ingredients))
+    formData.append('ingredients', JSON.stringify(helper.formatIngredientLower(updatedDraft.ingredients)))
     formData.append('method', updatedDraft.method)
     formData.append('photo', updatedDraft.photo)
 
@@ -168,15 +167,15 @@ const PublishDraft = () => {
        if (validation.result) {
 
          draftService.publishdraft(formData)
-	             .then(returnedObject => {
-			if (returnedObject['err']) {
-			   helper.showtoast('A recipe with that title already exists')
-			} else {
-		         console.log(returnedObject)
-			 helper.showtoast('Recipe Published!!')
-			 history.push('/home')
-		        }
-		     })
+	                 .then(returnedObject => {
+		            	 if (returnedObject['err']) {
+			                helper.showtoast('A recipe with that title already exists')
+			             } else {
+		                    console.log(returnedObject)
+			                helper.showtoast('Recipe Published!!')
+			                history.push('/home')
+		                }
+		             })
        }
 
     } else if (buttonId === "updateDraft") {
@@ -184,25 +183,22 @@ const PublishDraft = () => {
 
        console.log(updatedDraft)
 
-       // 1. Give alert for successful update
-
        draftService.updatedraft(formData)
-	           .then(returnedObject => {
-		      console.log(returnedObject)
-		      helper.showtoast('Draft Updated!!')
-		   })
+	               .then(returnedObject => {
+		               console.log(returnedObject)
+		               helper.showtoast('Draft Updated!!')
+		            })
     } else {
        console.log(myForm.current.buttonId)
 
-      // Redirect to drafts after alert
        let draftId = currentdraft.id
 
        deleteService.deletedraft(draftId)
-	            .then(returnedObject => {
-		       console.log(returnedObject)
-		       helper.showtoast("Draft Deleted!!")
-		       history.push('/drafts')
-		    })
+	                .then(returnedObject => {
+		            console.log(returnedObject)
+		            helper.showtoast("Draft Deleted!!")
+		            history.push('/drafts')
+		            })
     }
   
   }
@@ -217,7 +213,7 @@ const PublishDraft = () => {
       </div>
 
       <div className="content">
-	<form onSubmit={handleSubmit} ref={myForm}>
+	  <form onSubmit={handleSubmit} ref={myForm}>
 	  <div className="labeldiv">
 	    <label htmlFor="title" className="draftlabels">Title</label>
 	    {(isEmpty.title) ? (<p className="required">Required</p>) : (<></>)}
@@ -324,41 +320,41 @@ const PublishDraft = () => {
 	  </div>
 	  {
 	    ingredient.map((val, idx) => {
-	        const ingId = `name-${idx}`
+	    const ingId = `name-${idx}`
 		const quaId = `qua-${idx}`
 		const remId = `rem-${idx}`
 
 		return (
 		    <div key={`cat-${idx}`} className="fadeInAnimation">
-                       <label htmlFor={ingId} 
+                <label htmlFor={ingId} 
 			      className="draftlabels">{'Name: '}</label>
 		       <input
-			 type="text"
-			 name={ingId}
-			 data-idx={idx}
-			 id={ingId}
-			 className="name"
-			 value={ingredient[idx].name}
-			 onChange={handleIngredientChange}
-                       />
+			      type="text"
+			      name={ingId}
+			      data-idx={idx}
+			      id={ingId}
+			      className="name"
+			      value={ingredient[idx].name}
+			      onChange={handleIngredientChange}
+               />
 		       <label htmlFor={quaId}
-			      className="draftlabels">{'Quantity: '}</label>
+			          className="draftlabels">{'Quantity: '}</label>
 		       <input
-			 type="text"
-			 name="quaId"
-			 data-idx={idx}
-			 id={quaId}
-			 className="quantity"
-			 value={ingredient[idx].quantity}
-			 onChange={handleIngredientChange}
+			      type="text"
+			      name="quaId"
+			      data-idx={idx}
+			      id={quaId}
+			      className="quantity"
+			      value={ingredient[idx].quantity}
+			      onChange={handleIngredientChange}
 		       />
 		       <input
-			 type="button"
-			 className="removebutton"
-			 name="remove"
-			 data-idx={idx}
-			 id={remId}
-			 onClick={handleRemove}
+			      type="button"
+			      className="removebutton"
+			      name="remove"
+			      data-idx={idx}
+			      id={remId}
+			      onClick={handleRemove}
 		       />
 		    </div>
 		)

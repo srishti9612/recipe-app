@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
 import { FilterContext } from './../utils/FilterContext'
 import './Filters.css'
+import helper from './../utils/helper.js'
 
 const Filters = () => {
 
@@ -62,29 +63,30 @@ const Filters = () => {
      let filterObj = JSON.parse(window.localStorage.getItem('filter'))
 
      if (filterObj) {
+
         setIngredients(filterObj.ingredients)
 
-	setCuisines(filterObj.cuisines)
+	     setCuisines(filterObj.cuisines)
 
-	setIsCheckedMeal({
-	   Breakfast: filterObj.meals.includes("Breakfast"),
-	   Lunch: filterObj.meals.includes("Lunch"),
-	   Dinner: filterObj.meals.includes("Dinner"),
-	   Snack: filterObj.meals.includes("Snack"),
-	   Any: filterObj.meals.includes("Any")
-	})
+	     setIsCheckedMeal({
+	         Breakfast: filterObj.meals.includes("Breakfast"),
+	         Lunch: filterObj.meals.includes("Lunch"),
+	         Dinner: filterObj.meals.includes("Dinner"),
+	         Snack: filterObj.meals.includes("Snack"),
+	         Any: filterObj.meals.includes("Any")
+	     })
 	
-	setXingredients(filterObj.xingredients)
+	     setXingredients(filterObj.xingredients)
 
-	setXcuisines(filterObj.xcuisines)
+	     setXcuisines(filterObj.xcuisines)
 
-	setIsCheckedXmeal({
-	   Breakfast: filterObj.xmeals.includes("Breakfast"),
-           Lunch: filterObj.xmeals.includes("Lunch"),
-	   Dinner: filterObj.xmeals.includes("Dinner"),
-	   Snack: filterObj.xmeals.includes("Snack"),
-	   Any: filterObj.xmeals.includes("Any")
-	})
+	     setIsCheckedXmeal({
+	         Breakfast: filterObj.xmeals.includes("Breakfast"),
+            Lunch: filterObj.xmeals.includes("Lunch"),
+	         Dinner: filterObj.xmeals.includes("Dinner"),
+	         Snack: filterObj.xmeals.includes("Snack"),
+	         Any: filterObj.xmeals.includes("Any")
+	     })
      }
 
   }, [])
@@ -241,8 +243,8 @@ const Filters = () => {
        let ing = [...ingredients]
 
        if (ing.length > 1) {
-         ing.splice(index, 1)
-         setIngredients(ing)
+            ing.splice(index, 1)
+            setIngredients(ing)
        }
      
      } else if (name === "delXing") {
@@ -250,8 +252,8 @@ const Filters = () => {
        let xing = [...xingredients]
 
        if (xing.length > 1) {
-          xing.splice(index, 1)
-	  setXingredients(xing)
+            xing.splice(index, 1)
+	         setXingredients(xing)
        }
      
      } else if (name === "delCuis") {
@@ -259,8 +261,8 @@ const Filters = () => {
        let cuis = [...cuisines]
 
        if (cuis.length > 1) {
-          cuis.splice(index, 1)
-	  setCuisines(cuis)
+            cuis.splice(index, 1)
+	         setCuisines(cuis)
        }
      
      } else if (name === "delXcuis") {
@@ -268,8 +270,8 @@ const Filters = () => {
        let xcuis = [...xcuisines]
 
        if (xcuis.length > 1) {
-         xcuis.splice(index, 1)
-	 setXcuisines(xcuis)
+            xcuis.splice(index, 1)
+	         setXcuisines(xcuis)
        }
      
      } 
@@ -278,42 +280,42 @@ const Filters = () => {
   return (
      <div id="filterdiv">
 
-         <form onSubmit={handleSubmit} className="filterform" ref={myForm}>
+      <form onSubmit={handleSubmit} className="filterform" ref={myForm}>
            
 	   <label htmlFor="includeingred" id="inglabel">Include Ingredients</label>
            <div id="includeingred">
            {
              ingredients.map((val, idx) => {
                  
-	         const ingId = `ing-${idx}`
-	         const remId = `rem-${idx}`
+	          const ingId = `ing-${idx}`
+	          const remId = `rem-${idx}`
 
-	         return (
+	          return (
 	           <div className="filterinputs">
 	              <input 
-		         type="text"
-		         name={ingId}
-		         data-idx={idx}
-		         id={ingId}
-		         value={ingredients[idx]}
-		         onChange={handleIngChange}/>
+		             type="text"
+		             name={ingId}
+		             data-idx={idx}
+		             id={ingId}
+		             value={ingredients[idx]}
+		             onChange={handleIngChange}/>
 	              <input
-			 type="button"
-			 className="delbutton"
-		         name="delIng"
-		         data-idx={idx}
-		         id={remId}
-		         onClick={handleDelete}></input>
+			          type="button"
+			          className="delbutton"
+		             name="delIng"
+		             data-idx={idx}
+		             id={remId}
+		             onClick={handleDelete}></input>
 	           </div>
 	         )
-	     })
+	         })
            }
            <input
-	      type="button"
-	      className="plusbutton"
-	      name="plus"
-	      id="addIng"
-	      onClick={handleAddIngredients}></input>
+	          type="button"
+	          className="plusbutton"
+	          name="plus"
+	          id="addIng"
+	          onClick={handleAddIngredients}></input>
            </div>
 
            <label htmlFor="includecuis" id="cuislabel">Include Cuisines</label>
@@ -321,64 +323,63 @@ const Filters = () => {
            {
              cuisines.map((val, idx) => {
 
-	         const cuiId = `cui-${idx}`
+	              const cuiId = `cui-${idx}`
                  const remId = `rem-${idx}`
 
-	         return (
+	              return (
                   <div className="filterinputs">
-	             <input 
-	                type="text"
-	                name={cuiId}
-	                data-idx={idx}
-	                id={cuiId}
-	                value={cuisines[idx]}
-	                onChange={handleCuisineChange}/>
-	             <input 
-		        type="button"
-			className="delbutton"
-		        name="delCuis"
-		        id={remId}
-		        data-idx={idx}
-		        onClick={handleDelete}/>
+	                  <input 
+	                     type="text"
+	                     name={cuiId}
+	                     data-idx={idx}
+	                     id={cuiId}
+	                     value={cuisines[idx]}
+	                     onChange={handleCuisineChange}/>
+	                  <input 
+		                  type="button"
+			               className="delbutton"
+		                  name="delCuis"
+		                  id={remId}
+		                  data-idx={idx}
+		                  onClick={handleDelete}/>
                   </div>
-	        )
-	     })
+	              )
+	          })
            }
            <input
-	      type="button"
-	      id="addCuis"
-	      className="plusbutton"
-	      onClick={handleAddCuisines}/>
-           </div>
+	           type="button"
+	           id="addCuis"
+	           className="plusbutton"
+	          onClick={handleAddCuisines}/>
+          </div>
 
           <label htmlFor="includemeals" id="meallabel">Include Meals</label>
           <div id="includemeals">
           {
             mealValues.map((val, idx) => {
 
-	        const mealId = `meal-${idx}`
+	             const mealId = `meal-${idx}`
                 console.log(val)
-	        console.log(isCheckedMeal[val])
+	             console.log(isCheckedMeal[val])
 
-	        return (
-	          <div>
-		   {/*<label htmlFor={mealId}>{val}</label>*/}
-	             <input 
-		        type="checkbox"
-		        name={val}
-		        data-idx={idx}
-		        id={mealId}
-		        disabled={isDisabledMeal[val]}
-		        checked={isCheckedMeal[val]}
-		        onChange={handleSingleCheckMeal}/>
-		     <label 
-			htmlFor={mealId}
-			className="checkboxlabel">{val}</label>
-                  </div>
+	         return (
+	            <div>
+	               <input 
+		               type="checkbox"
+		               name={val}
+		               data-idx={idx}
+		               id={mealId}
+		               disabled={isDisabledMeal[val]}
+		               checked={isCheckedMeal[val]}
+		               onChange={handleSingleCheckMeal}/>
+		            <label 
+			            htmlFor={mealId}
+			            className="checkboxlabel">{val}</label>
+               </div>
 	        )
-	    })
-          }
-          </div>
+	       })
+         }
+         </div>
 
           <label htmlFor="xcludeing" id="xinglabel">Exclude Ingredients</label>
           <div id="xcludeing">
@@ -389,7 +390,7 @@ const Filters = () => {
                  const remId = `rem-${idx}`
 
                  return (
-	           <div className="filterinputs">
+	                <div className="filterinputs">
                       <input
                          type="text"
                          name={xingId}
@@ -397,22 +398,22 @@ const Filters = () => {
                          id={xingId}
                          value={xingredients[idx]}i
                          onChange={handleXingChange}/>
-	              <input
-		         type="button"
-		         name="delXing"
-		         id={remId}
-		         data-idx={idx}
+	                   <input
+		                   type="button"
+		                   name="delXing"
+		                   id={remId}
+		                   data-idx={idx}
                          className="delbutton"
-		         onClick={handleDelete}/>
-	           </div>
+		                   onClick={handleDelete}/>
+	                </div>
                  )
             })
           }
           <input
-	     type="button"
+	          type="button"
              id="addXing"
-	     className="plusbutton"
-	     onClick={handleAddXingredients}/>
+	          className="plusbutton"
+	          onClick={handleAddXingredients}/>
           </div>
 
           <label htmlFor="xcludecuis" id="xcuislabel">Exclude Cuisines</label>
@@ -420,35 +421,35 @@ const Filters = () => {
           {
             xcuisines.map((val, idx) => {
 	 
-	        const xcuiId = `xmeal-${idx}`
-                const remId = `rem-${idx}`
+	         const xcuiId = `xmeal-${idx}`
+            const remId = `rem-${idx}`
 
 	        return (
 	          <div className="filterinputs">
 	             <input
-		        type="text"
-		        name={xcuiId}
-		        data-idx={idx}
-		        id={xcuiId}
-		        value={xcuisines[idx]}
-		        onChange={handleXcuisineChange}/>
-		     <input
-		        type="button"
-		        name="delXcuis"
-		        id={remId}
-		        data-idx={idx}
-		        className="delbutton"
-		        onClick={handleDelete}/>
+		             type="text"
+		             name={xcuiId}
+		             data-idx={idx}
+		             id={xcuiId}
+		             value={xcuisines[idx]}
+		             onChange={handleXcuisineChange}/>
+		          <input
+		             type="button"
+		             name="delXcuis"
+		             id={remId}
+		             data-idx={idx}
+		             className="delbutton"
+		             onClick={handleDelete}/>
 	          </div>
 	        )
-	   })
+	        })
          }
 
          <input
-	    type="button"
-	    id="addXcuis"
-	    className="plusbutton"
-	    onClick={handleAddXcuisines}/>
+	         type="button"
+	         id="addXcuis"
+	         className="plusbutton"
+	         onClick={handleAddXcuisines}/>
        </div>
 
        <label htmlFor="xcludemeals" id="xmeallabel">Exclude Meals</label>
@@ -459,38 +460,38 @@ const Filters = () => {
              const xmealId = `xmeal-${idx}`
 
              return (
-	      <div>
+	          <div>
                <input
-                 type="checkbox"
-                 name={val}
-                 data-idx={idx}
-                 id={xmealId}
-		 disabled={isDisabledXmeal[val]}
-                 checked={isCheckedXmeal[val]}
-                 onChange={handleSingleCheckXmeal}/>
-	       <label 
-		  htmlFor={xmealId}
-		  className="checkboxlabel">{val}</label>
-	      </div>
-             )
+                  type="checkbox"
+                  name={val}
+                  data-idx={idx}
+                  id={xmealId}
+		            disabled={isDisabledXmeal[val]}
+                  checked={isCheckedXmeal[val]}
+                  onChange={handleSingleCheckXmeal}/>
+	           <label 
+		           htmlFor={xmealId}
+		           className="checkboxlabel">{val}</label>
+	         </div>
+            )
          })
        }
        </div>
        
        <div className="filterbuttons">
          <input
-	   type="submit"
-	   id="submitfilter"
-	   value="Filter"
-	   name="submit"
-	   onClick={e => myForm.current.buttonId=e.target.id}/>
+	         type="submit"
+	         id="submitfilter"
+	         value="Filter"
+	         name="submit"
+	         onClick={e => myForm.current.buttonId=e.target.id}/>
 
-         <input
-	   type="submit"
-	   id="clearfilter"
-	   value="Clear"
-	   name="clear"
-	   onClick={e => myForm.current.buttonId=e.target.id}/>
+            <input
+	            type="submit"
+	            id="clearfilter"
+	            value="Clear"
+	            name="clear"
+	            onClick={e => myForm.current.buttonId=e.target.id}/>
        </div>
 
       </form>

@@ -6,8 +6,6 @@ const adddraft = (newDraft) => {
  
   const config = conf.getConfig()
 
-  //const request = axios.post('/api/adddraft', newDraft, config) /* trying out new apis */
-
   const request = axios.post('/api/draft/', newDraft, config)
 
   return request.then(response => response.data)
@@ -20,8 +18,6 @@ const updatedraft = (updDraft) => {
 
    const config = conf.getConfig()
 
-   //const request = axios.put('/api/updatedraft/', updDraft, config) /* trying out new apis */
-
    const request = axios.put('/api/draft/', updDraft, config)
 
    return request.then(response => response.data)
@@ -32,8 +28,6 @@ const publishdraft = (updDraft) => {
   console.log('inside publish draft service')
 
   const config = conf.getConfig()
-
-  //const request = axios.post('/api/publishdraft', updDraft, config) /* trying out new apis */
 
   const request = axios.post('/api/draft/publishdraft', updDraft, config)
 

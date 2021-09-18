@@ -1,7 +1,3 @@
-/* 1. Delete draft service
- * 2. Delete recipe service
- */
-
 import axios from 'axios'
 import conf from './Config.js'
 
@@ -9,8 +5,6 @@ const deletedraft = draftId => {
    console.log('inside delete draft service')
    
    const config = conf.getConfig()
-
-   //const request = axios.delete(`/api/drafts/${draftId}`, config) /* trying out new apis */
 
    const request = axios.delete(`/api/draft/${draftId}`, config)
 
@@ -22,8 +16,6 @@ const deleterecipe = recipeId => {
    console.log('inside delete recipe service')
 
    const config = conf.getConfig()
-
-   //const request = axios.delete(`/api/recipes/${recipeId}`, config) /* trying out new apis */
 
    const request = axios.delete(`/api/recipe/${recipeId}`, config)
 
