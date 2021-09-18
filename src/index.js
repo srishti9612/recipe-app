@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css'
 
-//console.log = function () {}
+console.log = function () {}
 
 ReactDOM.render(
   <App />,
