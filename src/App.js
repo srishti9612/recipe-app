@@ -1,8 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react'
 import Home from './components/Home'
 import Add from './components/Add/Add'
-//import Login from './components/Login/Login'
-//import Signup from './components/Signup/Signup'
 import Drafts from './components/Drafts/Drafts'
 import PublishDraft from './components/PublishDraft/PublishDraft'
 import Bookmarks from './components/Bookmarks/Bookmarks'
